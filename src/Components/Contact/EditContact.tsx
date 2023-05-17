@@ -12,8 +12,6 @@ const EditContact = () => {
     )
   );
 
-  console.log(contact.firstName);
-
   return (
     <>
       <h1>Edit Contact Screen</h1>

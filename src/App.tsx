@@ -5,6 +5,8 @@ import ErrorPage from './ErrorPage';
 import CreateContact from './Components/Contact/CreateContact';
 import HomeContent from './Components/Content/HomeContent';
 import EditContact from './Components/Contact/EditContact';
+import Maps from './Components/ChartsMaps/Maps';
+import LineChart from './Components/ChartsMaps/Charts';
 
 const router = createBrowserRouter([
   {
@@ -24,13 +26,21 @@ const router = createBrowserRouter([
         path: '/edit-contact/:firstName',
         element: <EditContact />,
       },
+      {
+        path: '/charts',
+        element: <LineChart />,
+      },
+      {
+        path: '/maps',
+        element: <Maps />,
+      },
     ],
   },
 ]);
 
 const App = () => {
   return (
-    <div className="w-screen">
+    <div className="w-screen h-screen">
       <RouterProvider router={router} />
     </div>
   );
