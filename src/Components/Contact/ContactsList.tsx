@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteContact, editContact } from '../../Store/Slices/ContactSlice';
+import { deleteContact } from '../../Store/Slices/ContactSlice';
 import { useNavigate } from 'react-router';
 
 const ContactsList = () => {
@@ -8,7 +8,6 @@ const ContactsList = () => {
   const contacts = useSelector((state: any) => state.Contacts.contacts);
 
   const handleEditContact = (contact: any) => {
-    dispatch(editContact(contact));
     navigate(`/edit-contact/${contact.firstName}`);
   };
 
@@ -17,11 +16,11 @@ const ContactsList = () => {
   };
 
   return contacts.map((contact: any, index: number) => (
-    <div key={index} className="flex flex-col w-28">
+    <div key={index} className="flex flex-col w-40">
       <div className="border border-gray-500 p-4 list-none">
-        <li>FN-{contact.firstName}</li>
-        <li>LN-{contact.lastName}</li>
-        <li>ST-{contact.status}</li>
+        <li>First Name : {contact.firstName}</li>
+        <li>Last Name : {contact.lastName}</li>
+        <li>Status : {contact.status}</li>
       </div>
       <div className="flex flex-col gap-2 mt-2">
         <button

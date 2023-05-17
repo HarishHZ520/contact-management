@@ -8,6 +8,7 @@ const CreateContactForm = ({
   elastName,
   estatus,
   editMode,
+  onEditContact,
 }: any) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -15,18 +16,26 @@ const CreateContactForm = ({
   const [firstName, setFirstName] = useState(efirstName || '');
   const [lastName, setLastName] = useState(elastName || '');
   const [status, setStatus] = useState(estatus || '');
+  const [error, setError] = useState('');
 
   const handleSaveContact = () => {
+    if (!firstName || !lastName || !status) {
+      setError('Please enter all fields.');
+      return;
+    }
+
     const newContact = {
       firstName,
       lastName,
       status,
     };
-    {
-      editMode === true
-        ? dispatch(editContact(newContact))
-        : dispatch(saveContact(newContact));
+    if (editMode === true) {
+      // call the handler function with the updated contact
+      onEditContact(newContact);
+    } else {
+      dispatch(saveContact(newContact));
     }
+
     setFirstName('');
     setLastName('');
     setStatus('');
@@ -43,6 +52,7 @@ const CreateContactForm = ({
           className="border grow p-2"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
+          required
         />
       </div>
       <div className="flex flex-col sm:flex-row sm:items-center lg:gap-x-4 md:gap-x-3 sm:gap-x-0 mb-5 lg:p-2 md:p-0">
@@ -53,6 +63,7 @@ const CreateContactForm = ({
           className="border grow p-2"
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
+          required
         />
       </div>
       <div className="flex flex-col sm:flex-row sm:items-center lg:gap-x-4 md:gap-x-3 sm:gap-x-0 mb-5 lg:p-2 md:p-0">
@@ -83,12 +94,14 @@ const CreateContactForm = ({
         </div>
       </div>
 
+      {error && <p className="text-red-500">{error}</p>}
+
       <div className="flex justify-center">
         <button
           className="mt-4 py-2 px-4 bg-blue-500 hover:bg-blue-700 text-white rounded"
           onClick={handleSaveContact}
         >
-          {editMode === true ? 'Save Editted Contact' : 'Save Contact'}
+          {editMode === true ? 'Save Edited Contact' : 'Save Contact'}
         </button>
       </div>
     </>
