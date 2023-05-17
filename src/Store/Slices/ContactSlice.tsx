@@ -33,7 +33,7 @@ const contactSlice = createSlice({
     },
 
     editContact(state, action: PayloadAction<Contact>) {
-      console.log(state,action.payload)
+      console.log(state);
       const updatedContact = action.payload;
       const contactIndex = state.contacts.findIndex((contact) => {
         const firstNameMatch =
@@ -48,10 +48,10 @@ const contactSlice = createSlice({
       if (contactIndex !== -1) {
         const existingContact = state.contacts[contactIndex];
         state.contacts[contactIndex] = {
-          ...existingContact, // Keep the existing properties of the contact
-          firstName: updatedContact.firstName, // Update the firstName property
-          lastName: updatedContact.lastName, // Update the lastName property
-          status: updatedContact.status, // Update the status property
+          ...existingContact,
+          firstName: updatedContact.firstName,
+          lastName: updatedContact.lastName,
+          status: updatedContact.status,
         };
       }
     },

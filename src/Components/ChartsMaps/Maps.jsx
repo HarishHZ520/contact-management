@@ -1,8 +1,9 @@
 import React from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { useQuery } from '@tanstack/react-query';
-import { Icon } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css';
+import 'leaflet-defaulticon-compatibility';
 
 const fetchCountriesData = async () => {
   const response = await fetch('https://disease.sh/v3/covid-19/countries');
@@ -25,23 +26,17 @@ const Maps = () => {
     return <div>Error occurred while fetching data</div>;
   }
 
-  const markerIcon = new Icon({
-    iconUrl: '../../assets/icon/marker.png',
-    iconSize: [24, 24],
-  });
-
   return (
     <>
-      <MapContainer center={[20, 77]} zoom={2} scrollWheelZoom={false}>
+      <MapContainer center={[20, 77]} zoom={4} scrollWheelZoom={false}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {countriesData.map((country) => (
+        {countriesData.map((country, index) => (
           <Marker
-            key={country.countryInfo._id}
+            key={index}
             position={[country.countryInfo.lat, country.countryInfo.long]}
-            icon={markerIcon}
           >
             <Popup>
               <div>
