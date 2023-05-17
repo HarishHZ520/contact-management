@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import LineChart from './LineChart';
 
 const Chart = () => {
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     const response = await fetch(
       'https://disease.sh/v3/covid-19/historical/all?lastdays=all'
     );
@@ -11,11 +11,7 @@ const Chart = () => {
       throw new Error('Failed to fetch data');
     }
     return response.json();
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+  }, []);
 
   const { data, isLoading, isError } = useQuery(['covidData'], fetchData);
 
