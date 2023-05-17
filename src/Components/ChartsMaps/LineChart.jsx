@@ -29,9 +29,6 @@ const LineChart = ({ data }) => {
   const recoveredData = Object.values(data.recovered);
   const deathsData = Object.values(data.deaths);
 
-  const reducedLabels = labels.filter((_, index) => index % 200 === 0);
-  console.log(reducedLabels);
-
   const datasets = [
     {
       label: 'Cases',
@@ -63,6 +60,7 @@ const LineChart = ({ data }) => {
 
   const options = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         position: 'top',
