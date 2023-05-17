@@ -11,10 +11,13 @@ const Aside = () => {
         Contacts
       </NavLink>
       <NavLink
-        to={'charts-maps'}
+        to={'charts'}
         className="border border-gray-500 p-2 w-full hover:bg-blue-200"
       >
-        Charts and Maps
+        Charts
+      </NavLink>
+      <NavLink to={'maps'} className="border border-gray-500 p-2 w-full hover:bg-blue-200">
+        Maps
       </NavLink>
     </nav>
   );

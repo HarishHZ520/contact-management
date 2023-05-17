@@ -7,8 +7,6 @@ import NoContacts from '../Contact/NoContacts';
 const HomeContent = () => {
   const contacts = useSelector((state: any) => state.Contacts.contacts);
 
-  console.log(contacts);
-
   return (
     <>
       <Link
@@ -17,7 +15,7 @@ const HomeContent = () => {
       >
         Create Contact
       </Link>
-      <div className="flex sm:flex-row flex-col w-full h-80 overflow-y-scroll sm:justify-evenly items-center gap-5">
+      <div className="flex sm:flex-row flex-col w-full h-80 sm:overflow-y-hidden overflow-y-scroll sm:justify-evenly items-center gap-5">
         {contacts.length === 0 ? <NoContacts /> : <ContactsList />}
       </div>
     </>

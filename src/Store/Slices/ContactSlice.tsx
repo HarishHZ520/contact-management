@@ -33,6 +33,7 @@ const contactSlice = createSlice({
     },
 
     editContact(state, action: PayloadAction<Contact>) {
+      console.log(state,action.payload)
       const updatedContact = action.payload;
       const contactIndex = state.contacts.findIndex((contact) => {
         const firstNameMatch =
